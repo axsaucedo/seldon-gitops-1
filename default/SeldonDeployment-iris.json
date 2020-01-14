@@ -13,25 +13,21 @@
                 "name": "default",
                 "graph": {
                     "name": "iris-default",
-                    "type": "UNKNOWN_TYPE",
-                    "implementation": "XGBOOST_SERVER",
+                    "implementation": "SKLEARN_SERVER",
                     "endpoint": {
-                        "service_host": "localhost",
-                        "service_port": 9001,
                         "type": "REST"
                     },
-                    "modelUri": "gs://seldon-models/xgboost/iris"
+                    "modelUri": "gs://seldon-models/sklearn/iris"
                 },
                 "componentSpecs": [
                     {
                         "metadata": {
-                            "creationTimestamp": "2020-01-14T20:25:16Z"
+                            "creationTimestamp": "2020-01-14T20:22:47Z"
                         },
                         "spec": {
                             "containers": [
                                 {
                                     "name": "iris-default",
-                                    "image": "seldonio/xgboostserver_rest:0.2",
                                     "resources": {
                                         "limits": {
                                             "cpu": "1",
@@ -49,9 +45,6 @@
                 ],
                 "replicas": 1,
                 "engineResources": {},
-                "labels": {
-                    "version": "default"
-                },
                 "svcOrchSpec": {},
                 "traffic": 100,
                 "explainer": {
