@@ -4,13 +4,17 @@
     "metadata": {
         "name": "kfincome",
         "namespace": "default",
-        "creationTimestamp": null
+        "creationTimestamp": null,
+        "labels": {
+            "app.kubernetes.io/instance": "seldon-gitops-default"
+        }
     },
     "spec": {
         "default": {
             "predictor": {
                 "sklearn": {
                     "storageUri": "gs://seldon-models/sklearn/income/model",
+                    "runtimeVersion": "0.2.2",
                     "resources": {
                         "limits": {
                             "cpu": "1",
@@ -24,6 +28,13 @@
                 },
                 "minReplicas": 1,
                 "maxReplicas": 3
+            },
+            "explainer": {
+                "alibi": {
+                    "type": "AnchorTabular",
+                    "storageUri": "gs://seldon-models/sklearn/income/explainer",
+                    "resources": {}
+                }
             }
         }
     },
