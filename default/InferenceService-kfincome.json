@@ -1,0 +1,31 @@
+{
+    "kind": "InferenceService",
+    "apiVersion": "serving.kubeflow.org/v1alpha2",
+    "metadata": {
+        "name": "kfincome",
+        "namespace": "default",
+        "creationTimestamp": null
+    },
+    "spec": {
+        "default": {
+            "predictor": {
+                "sklearn": {
+                    "storageUri": "gs://seldon-models/sklearn/income/model",
+                    "resources": {
+                        "limits": {
+                            "cpu": "1",
+                            "memory": "1Gi"
+                        },
+                        "requests": {
+                            "cpu": "100m",
+                            "memory": "1Gi"
+                        }
+                    }
+                },
+                "minReplicas": 1,
+                "maxReplicas": 3
+            }
+        }
+    },
+    "status": {}
+}
