@@ -1,0 +1,54 @@
+{
+    "kind": "SeldonDeployment",
+    "apiVersion": "machinelearning.seldon.io/v1alpha2",
+    "metadata": {
+        "name": "newdep",
+        "namespace": "default",
+        "creationTimestamp": null
+    },
+    "spec": {
+        "name": "newdep",
+        "predictors": [
+            {
+                "name": "default",
+                "graph": {
+                    "name": "newdep-default",
+                    "implementation": "SKLEARN_SERVER",
+                    "endpoint": {
+                        "type": "REST"
+                    },
+                    "modelUri": "gs://seldon-models/sklearn/income/model"
+                },
+                "componentSpecs": [
+                    {
+                        "metadata": {
+                            "creationTimestamp": "2020-01-22T14:29:53Z"
+                        },
+                        "spec": {
+                            "containers": [
+                                {
+                                    "name": "newdep-default",
+                                    "resources": {}
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "replicas": 1,
+                "engineResources": {},
+                "svcOrchSpec": {},
+                "traffic": 100,
+                "explainer": {
+                    "containerSpec": {
+                        "name": "",
+                        "resources": {}
+                    }
+                }
+            }
+        ],
+        "annotations": {
+            "seldon.io/engine-seldon-log-messages-externally": "true"
+        }
+    },
+    "status": {}
+}
